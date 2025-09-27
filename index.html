@@ -3,16 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather App</title>
+  <title>Daily Weather</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h1>🌤 Weather App</h1>
-    <input type="text" id="city" placeholder="Enter city name">
-    <button onclick="getWeather()">Get Weather</button>
-    <div id="result"></div>
+  <div id="background"></div>
+
+  <div class="page-container">
+    <!-- Top heading -->
+    <header>
+      <h1>Daily Weather</h1>
+    </header>
+
+    <!-- Middle search section -->
+    <section class="search-section">
+      <h2>Search</h2>
+      <input type="text" id="city" placeholder="Enter city name">
+      <button onclick="getWeather()">Get Weather</button>
+    </section>
+
+    <!-- Bottom result section -->
+    <section class="result-section" id="result">
+      <!-- Weather info will appear here -->
+    </section>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,37 +1,155 @@
-body {
-  font-family: Arial, sans-serif;
+/* Reset & full-screen layout */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+/* Full-screen background */
+#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  transition: background-image 1s ease-in-out;
+}
+
+/* Overlay for readability */
+#background::after {
+  content: "";
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.3);
+}
+
+/* Container layout */
+.page-container {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  flex: 0 0 15%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(to right, #4facfe, #00f2fe);
-  margin: 0;
 }
 
-.container {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  text-align: center;
-  width: 300px;
-}
-
-input {
-  padding: 10px;
-  margin: 10px 0;
-  width: 80%;
-}
-
-button {
-  padding: 10px;
-  cursor: pointer;
-  background: #4facfe;
-  border: none;
+header h1 {
+  font-size: 3rem;
   color: white;
-  border-radius: 6px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
 }
 
-#result {
-  margin-top: 20px;
+/* Search section */
+.search-section {
+  flex: 0 0 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+.search-section h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.8rem;
+}
+
+.search-section input[type="text"] {
+  padding: 10px 15px;
+  width: 250px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.search-section input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.search-section button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255,255,255,0.3);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.search-section button:hover {
+  background-color: rgba(255,255,255,0.6);
+  transform: scale(1.05);
+}
+
+/* Result section */
+.result-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+/* Fade-in animation for results */
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Weather card */
+.weather-card {
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(0,0,0,0.3);
+  min-width: 250px;
+  margin-top: 10px;
+}
+
+/* Particle effects (for rain or snow) */
+.particle {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.7;
+  z-index: 2;
+  pointer-events: none;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to { transform: translateY(100vh); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  header h1 { font-size: 2.2rem; }
+  .search-section h2 { font-size: 1.5rem; }
+  .search-section input[type="text"] { width: 80%; }
+  .result-section { font-size: 1.2rem; }
 }
