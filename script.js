@@ -1,7 +1,7 @@
 const background = document.getElementById("background");
 const resultSection = document.getElementById("result");
 
-// Map weather descriptions to your images
+
 const bgImages = {
   "sunny": "images/sunny.jpg",
   "partly cloudy": "images/partly cloudy.jpg",
@@ -11,12 +11,11 @@ const bgImages = {
   "snowing2": "images/lightning.jpg"
 };
 
-// Clear old particles
 function clearParticles() {
   document.querySelectorAll(".particle").forEach(p => p.remove());
 }
 
-// Add rain particles
+
 function addRain(count) {
   clearParticles();
   for(let i=0;i<count;i++){
@@ -31,7 +30,7 @@ function addRain(count) {
   }
 }
 
-// Add snow particles
+
 function addSnow(count) {
   clearParticles();
   for(let i=0;i<count;i++){
@@ -62,7 +61,7 @@ async function getWeather() {
 
     const { latitude, longitude, name, country } = geoData.results[0];
 
-    // Weather
+   
     const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
     const weatherData = await weatherRes.json();
 
@@ -77,16 +76,15 @@ async function getWeather() {
     else if(code<=99) weatherDesc="rainy";
     else weatherDesc="sunny";
 
-    // Set background
+ 
     if(bgImages[weatherDesc]) {
       background.style.backgroundImage = `url('${bgImages[weatherDesc]}')`;
     }
 
-    // Add particles
     if(weatherDesc==="rainy") addRain(50);
     else if(weatherDesc.includes("snow")) addSnow(50);
 
-    // Display results
+
     resultSection.innerHTML = `
       <div class="weather-card fade-in">
         <h2>${name}, ${country}</h2>
@@ -102,7 +100,7 @@ async function getWeather() {
   }
 }
 
-// Enter key triggers search
+
 document.getElementById("city").addEventListener("keypress", e=>{
   if(e.key==="Enter") getWeather();
 });
